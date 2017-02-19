@@ -1,2 +1,2 @@
-Running-Rabbit
-Web VR Game: RunningRabbit
+RunningRabbit
+Web VR Game
