@@ -40,7 +40,7 @@ function createScene() {
   scene.fog = new THREE.Fog(0xf7d9aa, 100,950);
   camera.position.x = 0;
   camera.position.z = 200;
-  camera.position.y = 100;
+  camera.position.y = 50;
 
   renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
   renderer.setSize(WIDTH, HEIGHT);
@@ -158,7 +158,7 @@ Sky = function(){
     var c = new Cloud();
     this.clouds.push(c);
     var a = stepAngle*i;
-    var h = 850 + Math.random()*200;
+    var h = 800 + Math.random()*200;
     c.mesh.position.y = Math.sin(a)*h;
     c.mesh.position.z = Math.cos(a)*h;
     c.mesh.position.x = Math.random()*550;
@@ -172,7 +172,7 @@ Sky = function(){
     var c = new Cloud();
     this.clouds.push(c);
     var a = stepAngle*i;
-    var h = 950 + Math.random()*200;
+    var h = 800 + Math.random()*200;
     c.mesh.position.y = Math.sin(a)*h;
     c.mesh.position.z = Math.cos(a)*h;
     c.mesh.position.x = Math.random()*-500;
@@ -252,10 +252,11 @@ function loop(){
 }
 
 function updatePlane(){
-  var targetX = normalize(mousePos.x,-.75,.75,-100, 100);
-  var targetY = 45 - (740*(Math.pow(740*740 + targetX *targetX , 0.5)-740)/(Math.pow(740*740 + targetX * targetX , 0.5)));
+  var targetX = normalize(mousePos.x,-.75,.75,-50, 50);
+  var targetY = 30 - (740*(Math.pow(740*740 + targetX *targetX , 0.5)-740)/(Math.pow(740*740 + targetX * targetX , 0.5)));
   airplane.mesh.position.y = targetY;
   airplane.mesh.position.x = targetX;
+  airplane.mesh.position.z = 130;
   airplane.propeller.rotation.x += 0.3;
 }
 
