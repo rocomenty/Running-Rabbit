@@ -252,7 +252,7 @@ function loop(){
 }
 
 function updatePlane(){
-  var targetY = normalize(mousePos.y,-.75,.75,25, 175);
+  var targetY = normalize(-0.55 - (Math.abs(mousePos.x)/20),-.75,.75,25, 175);
   var targetX = normalize(mousePos.x,-.75,.75,-100, 100);
   airplane.mesh.position.y = targetY;
   airplane.mesh.position.x = targetX;
@@ -269,13 +269,14 @@ function normalize(v,vmin,vmax,tmin, tmax){
 }
 
 function init(event){
-  document.addEventListener('mousemove', handleMouseMove, false);
   createScene();
   createLights();
   createPlane();
   createSea();
   createSky();
   loop();
+  
+  document.addEventListener('mousemove', handleMouseMove, false);
 }
 
 // HANDLE MOUSE EVENTS
