@@ -184,7 +184,7 @@ Sky = function(){
 }
 
 Sea = function(){
-  var geom = new THREE.SphereGeometry( 730,730 );
+  var geom = new THREE.SphereGeometry(740,100,100);
   geom.applyMatrix(new THREE.Matrix4().makeRotationX(Math.PI/2));
   var mat = new THREE.MeshPhongMaterial({
     color:Colors.blue,
