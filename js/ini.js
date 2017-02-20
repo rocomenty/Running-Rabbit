@@ -184,7 +184,7 @@ Sky = function(){
 }
 
 Sea = function(){
-  var geom = new THREE.SphereGeometry(740,100,100);
+  var geom = new THREE.SphereGeometry(740,100,50);
   geom.applyMatrix(new THREE.Matrix4().makeRotationX(Math.PI/2));
   var mat = new THREE.MeshPhongMaterial({
     color:Colors.blue,
@@ -252,8 +252,8 @@ function loop(){
 }
 
 function updatePlane(){
-  var targetY = normalize(-0.55 - (Math.abs(mousePos.x)/20),-.75,.75,25, 175);
   var targetX = normalize(mousePos.x,-.75,.75,-100, 100);
+  var targetY = 45 - (740*(Math.pow(740*740 + targetX *targetX , 0.5)-740)/(Math.pow(740*740 + targetX * targetX , 0.5)));
   airplane.mesh.position.y = targetY;
   airplane.mesh.position.x = targetX;
   airplane.propeller.rotation.x += 0.3;
