@@ -231,7 +231,7 @@ var Rabbit;
 
 function createPlane(){
   Rabbit = new Rabbit();
-  Rabbit.mesh.scale.set(.06,.06,.06);
+  Rabbit.mesh.scale.set(.08,.08,.08);
   Rabbit.mesh.position.y = 130;
   scene.add(Rabbit.mesh);
 }
