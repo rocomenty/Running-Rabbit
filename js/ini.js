@@ -258,7 +258,7 @@ function loop(){
 
 function updatePlane(){
   var targetX = normalize(mousePos.x,-.75,.75,-80, 80);
-  var targetY = 20 - (740*(Math.pow(740*740 + targetX *targetX , 0.5)-740)/(Math.pow(740*740 + targetX * targetX , 0.5)));
+  var targetY = 20.5- (740*(Math.pow(740*740 + targetX *targetX , 0.5)-740)/(Math.pow(740*740 + targetX * targetX , 0.5)));
   Rabbit.mesh.position.y = targetY;
   Rabbit.mesh.position.x = targetX;
   Rabbit.mesh.position.z = 180;
