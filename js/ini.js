@@ -93,7 +93,7 @@ var Rabbit = function(){
   // rabbit
 
   var geomEngine = new THREE.SphereGeometry(80,100,20,20,20);
-  var matEngine = new THREE.MeshPhongMaterial({color:Colors.red, shading:THREE.FlatShading});
+  var matEngine = new THREE.MeshPhongMaterial({color:Colors.brown, shading:THREE.FlatShading});
   var engine = new THREE.Mesh(geomEngine, matEngine);
   engine.castShadow = true;
   engine.receiveShadow = true;
