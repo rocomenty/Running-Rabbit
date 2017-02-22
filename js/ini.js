@@ -6,7 +6,6 @@ var Colors = {
     pink:0xF5986E,
     brownDark:0x23190f,
     blue:0x68c3c0,
-    gray:0x395e6d
 };
 
 // THREEJS RELATED VARIABLES
@@ -94,14 +93,14 @@ var Rabbit = function(){
   // rabbit
 
   var geomEngine = new THREE.SphereGeometry(80,100,20,20,20);
-  var matEngine = new THREE.MeshPhongMaterial({color:Colors.gray, shading:THREE.FlatShading});
+  var matEngine = new THREE.MeshPhongMaterial({color:Colors.red, shading:THREE.FlatShading});
   var engine = new THREE.Mesh(geomEngine, matEngine);
   engine.castShadow = true;
   engine.receiveShadow = true;
   this.mesh.add(engine);
 
   var tailShape = new THREE.SphereGeometry(20,20,20,20);
-  var tailMaterial= new THREE.MeshPhongMaterial({color:Colors.gray, shading:THREE.FlatShading});
+  var tailMaterial= new THREE.MeshPhongMaterial({color:Colors.pink, shading:THREE.FlatShading});
   var tail = new THREE.Mesh(tailShape, tailMaterial);
   tail.position.z = 120;
   tail.position.y = -20;
@@ -111,7 +110,7 @@ var Rabbit = function(){
 
 //ear
   var earShape1 = new THREE.BoxGeometry(40,150,20,1,1,1);
-  var earMaterial1= new THREE.MeshPhongMaterial({color:Colors.gray, shading:THREE.FlatShading});
+  var earMaterial1= new THREE.MeshPhongMaterial({color:Colors.pink, shading:THREE.FlatShading});
   var ear1 = new THREE.Mesh(earShape1, earMaterial1);
   ear1.position.x = 40;
   ear1.position.y = 120;
@@ -133,7 +132,7 @@ var Rabbit = function(){
 
 //ear
   var earShape2 = new THREE.BoxGeometry(40,150,20,1,1,1);
-  var earMaterial2= new THREE.MeshPhongMaterial({color:Colors.gray, shading:THREE.FlatShading});
+  var earMaterial2= new THREE.MeshPhongMaterial({color:Colors.pink, shading:THREE.FlatShading});
   var ear2 = new THREE.Mesh(earShape2, earMaterial2);
   ear2.position.x = -40;
   ear2.position.y = 120;
