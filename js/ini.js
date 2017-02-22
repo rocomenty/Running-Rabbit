@@ -6,6 +6,7 @@ var Colors = {
     pink:0xF5986E,
     brownDark:0x23190f,
     blue:0x68c3c0,
+    gray:0x395e6d
 };
 
 // THREEJS RELATED VARIABLES
@@ -39,8 +40,8 @@ function createScene() {
     );
   scene.fog = new THREE.Fog(0xf7d9aa, 100,950);
   camera.position.x = 0;
-  camera.position.z = 200;
-  camera.position.y = 30;
+  camera.position.z = 300;
+  camera.position.y = 60;
 
   renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
   renderer.setSize(WIDTH, HEIGHT);
@@ -90,64 +91,68 @@ var Rabbit = function(){
   this.mesh = new THREE.Object3D();
   this.mesh.name = "Rabbit";
 
-  // Create the cabin
-  var geomCockpit = new THREE.BoxGeometry(6,5,5,1,1,1);
-  var matCockpit = new THREE.MeshPhongMaterial({color:Colors.red, shading:THREE.FlatShading});
-  var cockpit = new THREE.Mesh(geomCockpit, matCockpit);
-  cockpit.castShadow = true;
-  cockpit.receiveShadow = true;
-  this.mesh.add(cockpit);
+  // rabbit
 
-  // Create Engine
-  var geomEngine = new THREE.BoxGeometry(2,5,5,1,1,1);
-  var matEngine = new THREE.MeshPhongMaterial({color:Colors.white, shading:THREE.FlatShading});
+  var geomEngine = new THREE.SphereGeometry(80,100,20,20,20);
+  var matEngine = new THREE.MeshPhongMaterial({color:Colors.gray, shading:THREE.FlatShading});
   var engine = new THREE.Mesh(geomEngine, matEngine);
-  engine.position.x = 40;
   engine.castShadow = true;
   engine.receiveShadow = true;
   this.mesh.add(engine);
 
-  // Create Tailplane
+  var tailShape = new THREE.SphereGeometry(20,20,20,20);
+  var tailMaterial= new THREE.MeshPhongMaterial({color:Colors.gray, shading:THREE.FlatShading});
+  var tail = new THREE.Mesh(tailShape, tailMaterial);
+  tail.position.z = 120;
+  tail.position.y = -20;
+  tail.castShadow = true;
+  tail.receiveShadow = true;
+  this.mesh.add(tail);
 
-  var geomTailPlane = new THREE.BoxGeometry(1.5,2,0.5,1,1,1);
-  var matTailPlane = new THREE.MeshPhongMaterial({color:Colors.red, shading:THREE.FlatShading});
-  var tailPlane = new THREE.Mesh(geomTailPlane, matTailPlane);
-  tailPlane.position.set(-35,25,0);
-  tailPlane.castShadow = true;
-  tailPlane.receiveShadow = true;
-  this.mesh.add(tailPlane);
+//ear
+  var earShape1 = new THREE.BoxGeometry(40,150,20,1,1,1);
+  var earMaterial1= new THREE.MeshPhongMaterial({color:Colors.gray, shading:THREE.FlatShading});
+  var ear1 = new THREE.Mesh(earShape1, earMaterial1);
+  ear1.position.x = 40;
+  ear1.position.y = 120;
+  ear1.rotation.z += -0.3;
+  ear1.castShadow = true;
+  ear1.receiveShadow = true;
+  this.mesh.add(ear1);
 
-  // Create Wing
+  // we can access a specific vertex of a shape through 
+  // the vertices array, and then move its x, y and z property:
+  earShape1.vertices[6].y-=5;
+  earShape1.vertices[6].z+=10;
+  earShape1.vertices[7].y-=5;
+  earShape1.vertices[7].z-=10;
+  earShape1.vertices[3].y+=15;
+  earShape1.vertices[3].z+=10;
+  earShape1.vertices[2].y+=15;
+  earShape1.vertices[2].z-=10;
 
-  var geomSideWing = new THREE.BoxGeometry(4,.8,15,1,1,1);
-  var matSideWing = new THREE.MeshPhongMaterial({color:Colors.red, shading:THREE.FlatShading});
-  var sideWing = new THREE.Mesh(geomSideWing, matSideWing);
-  sideWing.position.set(0,0,0);
-  sideWing.castShadow = true;
-  sideWing.receiveShadow = true;
-  this.mesh.add(sideWing);
+//ear
+  var earShape2 = new THREE.BoxGeometry(40,150,20,1,1,1);
+  var earMaterial2= new THREE.MeshPhongMaterial({color:Colors.gray, shading:THREE.FlatShading});
+  var ear2 = new THREE.Mesh(earShape2, earMaterial2);
+  ear2.position.x = -40;
+  ear2.position.y = 120;
+  ear2.rotation.z += 0.3;
+  ear2.castShadow = true;
+  ear2.receiveShadow = true;
+  this.mesh.add(ear2);
 
-  // Propeller
+  // we can access a specific vertex of a shape through 
+  // the vertices array, and then move its x, y and z property:
+  earShape2.vertices[6].y-=5;
+  earShape2.vertices[6].z+=10;
+  earShape2.vertices[7].y-=5;
+  earShape2.vertices[7].z-=10;
+  earShape2.vertices[3].y+=15;
+  earShape2.vertices[3].z+=10;
+  earShape2.vertices[2].y+=15;
+  earShape2.vertices[2].z-=10;
 
-  var geomPropeller = new THREE.BoxGeometry(2,1,1,1,1,1);
-  var matPropeller = new THREE.MeshPhongMaterial({color:Colors.brown, shading:THREE.FlatShading});
-  this.propeller = new THREE.Mesh(geomPropeller, matPropeller);
-  this.propeller.castShadow = true;
-  this.propeller.receiveShadow = true;
-
-  // Blades
-
-  var geomBlade = new THREE.BoxGeometry(.1,10,2,1,1,1);
-  var matBlade = new THREE.MeshPhongMaterial({color:Colors.brownDark, shading:THREE.FlatShading});
-
-  var blade = new THREE.Mesh(geomBlade, matBlade);
-  blade.position.set(8,0,0);
-  blade.castShadow = true;
-  blade.receiveShadow = true;
-  this.propeller.add(blade);
-  this.propeller.position.set(50,0,0);
-  this.mesh.add(this.propeller);
-  
 };
 
 Sky = function(){
@@ -227,8 +232,8 @@ var Rabbit;
 
 function createPlane(){
   Rabbit = new Rabbit();
-  Rabbit.mesh.scale.set(.25,.25,.25);
-  Rabbit.mesh.position.y = 100;
+  Rabbit.mesh.scale.set(.06,.06,.06);
+  Rabbit.mesh.position.y = 130;
   scene.add(Rabbit.mesh);
 }
 
@@ -253,12 +258,11 @@ function loop(){
 }
 
 function updatePlane(){
-  var targetX = normalize(mousePos.x,-.75,.75,-50, 50);
-  var targetY = 30 - (740*(Math.pow(740*740 + targetX *targetX , 0.5)-740)/(Math.pow(740*740 + targetX * targetX , 0.5)));
+  var targetX = normalize(mousePos.x,-.75,.75,-80, 80);
+  var targetY = 20 - (740*(Math.pow(740*740 + targetX *targetX , 0.5)-740)/(Math.pow(740*740 + targetX * targetX , 0.5)));
   Rabbit.mesh.position.y = targetY;
   Rabbit.mesh.position.x = targetX;
   Rabbit.mesh.position.z = 180;
-  Rabbit.propeller.rotation.x += 0.3;
 }
 
 function normalize(v,vmin,vmax,tmin, tmax){
