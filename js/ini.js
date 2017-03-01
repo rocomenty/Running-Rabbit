@@ -225,9 +225,26 @@ Cloud = function(){
   }
 }
 
+Tree = function () {
+  this.mesh = new THREE.Object3D();
+  this.mesh.name = "tree";
+  var geometry = new THREE.ConeGeometry( 20, 60, 32 );
+  var material = new THREE.MeshPhongMaterial( {color: 0x0d7729} );
+  var m = new THREE.Mesh(geometry.clone(), material);
+  m.position.x = 0;
+  m.position.y = Math.random()*10 + 100;
+  m.position.z = Math.random()*10;
+  var s = 2 + Math.random()*.9;
+  m.scale.set(s,s,s);
+  m.castShadow = true;
+  m.receiveShadow = true;
+  this.mesh.add(m);
+}
+
 // 3D Models
 var Earth;
 var Rabbit;
+var Tree;
 
 function createPlane(){
   Rabbit = new Rabbit();
@@ -256,6 +273,23 @@ function loop(){
   requestAnimationFrame(loop);
 }
 
+function createTrees() {
+  var nTrees = 1;
+  var trees = [];
+  // for(var i=0; i<this.nTrees; i++){
+  //   var t = new Tree();
+  //   this.trees.push(t);
+  //   t.mesh.position.y = 200;
+  //   t.mesh.position.z = 10;
+  //   t.mesh.position.x = 0;
+  //   var s = 10+Math.random()*2;
+  //   t.mesh.scale.set(s,s,s);
+  //   scene.add(t.mesh);
+  // }
+  Tree = new Tree();
+  scene.add(Tree.mesh);
+}
+
 function updatePlane(){
   var targetX = normalize(mousePos.x,-.75,.75,-80, 80);
   var targetY = 20.5- (740*(Math.pow(740*740 + targetX *targetX , 0.5)-740)/(Math.pow(740*740 + targetX * targetX , 0.5)));
@@ -280,6 +314,7 @@ function init(event){
   createEarth();
   createSky();
   loop();
+  createTrees();
   
   document.addEventListener('mousemove', handleMouseMove, false);
 }
