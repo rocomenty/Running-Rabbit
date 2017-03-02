@@ -317,16 +317,45 @@ function init(event){
   createTrees();
   
   document.addEventListener('mousemove', handleMouseMove, false);
+  document.addEventListener("keydown", onDocumentKeyDown, false);
 }
 
 // HANDLE MOUSE EVENTS
 
 var mousePos = { x: 0, y: 0 };
+var mouseRaw = { x: 730, y: 440};
 
 function handleMouseMove(event) {
   var tx = -1 + (event.clientX / WIDTH)*2;
   var ty = 1 - (event.clientY / HEIGHT)*2;
+  mouseRaw = {x: event.clientX, y: event.clientY};
   mousePos = {x:tx, y:ty};
+  console.log("The current mouse position is "+tx+", "+ty);
+  console.log("At "+event.clientX+", "+event.clientY);
+}
+
+function onDocumentKeyDown(event) {
+  console.log("on key down");
+  var keyCode = event.which;
+  if (keyCode == 37) {
+    if (mouseRaw.x > 0) {
+      mouseRaw.x = mouseRaw.x - 100;
+    }
+     mousePos.x = - 1 + ((mouseRaw.x - 100) / WIDTH)*2;
+     console.log("The keyboard left is pressed with mousePos.x = "+mousePos.x);
+     console.log("At "+mouseRaw.x+", "+mouseRaw.y);
+
+  }
+  else if (keyCode == 39) {
+    if (mouseRaw.x <= WIDTH) {
+      mouseRaw.x = mouseRaw.x + 100;
+    }
+    mousePos.x = -1 + ((mouseRaw.x - 100) / WIDTH)*2;
+    console.log("The keyboard left is pressed with mousePos.x = "+mousePos.x);
+    console.log("At "+mouseRaw.x+", "+mouseRaw.y);
+
+
+  }
 }
 
 window.addEventListener('load', init, false);
