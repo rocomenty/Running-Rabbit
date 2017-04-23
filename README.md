@@ -7,6 +7,6 @@ Since GitHub prevents commits of files larger than 100MB, the complete source co
 
 Please feel free to share any comments, thoughts, feedbacks with us by emailing to cheng.luo@wustl.edu or xue.zhang@wustl.edu. 
 
-Hope you will enjoy this one :)
+Hope you will enjoy this one :) 
 
 Note: The game idea and some of the codes are adapted from https://dgkanatsios.com/2016/03/07/creating-an-infinite-3d-runner-game-in-unity-like-temple-run-subway-surfers-part-1/
